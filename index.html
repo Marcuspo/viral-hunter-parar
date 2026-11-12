@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src https://ldzjwutxyvvfmzccjnwn.supabase.co; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parar o robô</title>
+<style>
+  [hidden] { display: none !important; }
+  body { margin: 0; padding: 32px 16px; font-family: system-ui, sans-serif; background: #ffffff; color: #1a1a1a; }
+  main { max-width: 32rem; margin: 0 auto; }
+  h1 { font-size: 1.5rem; margin: 0 0 12px; }
+  p { font-size: 1rem; line-height: 1.5; margin: 0 0 24px; }
+  button { width: 100%; padding: 16px; font-size: 1.125rem; font-weight: 600; border: 0; border-radius: 8px; background: #b91c1c; color: #ffffff; }
+  button:disabled { background: #7f7f7f; }
+</style>
+</head>
+<body>
+<main>
+<h1 id="titulo"></h1>
+<p id="texto"></p>
+<button id="botao" type="button" hidden></button>
+</main>
+<script>
+'use strict'
+// Abrir a página não manda nada: só o clique no botão chama a função. O token vem só do # e nunca vai para a tela.
+const titulo = document.getElementById('titulo')
+const texto = document.getElementById('texto')
+const botao = document.getElementById('botao')
+const t = new URLSearchParams(location.hash.slice(1)).get('t') ?? ''
+history.replaceState(null, '', location.pathname)
+
+const RELIGAR = 'Use o botão do resumo mais recente ou o painel no seu PC.'
+const INVALIDO = 'Abra o link direto do e-mail do robô.'
+
+function mostrar(tituloDaTela, textoDaTela, textoDoBotao) {
+  titulo.textContent = tituloDaTela
+  texto.textContent = textoDaTela
+  if (textoDoBotao === null) {
+    botao.hidden = true
+    return
+  }
+  botao.textContent = textoDoBotao
+  botao.disabled = false
+  botao.hidden = false
+}
+
+function mostrarErro() {
+  mostrar('Não deu para falar com o robô', 'Tente de novo em instantes. Enquanto o banco estiver fora do ar, o robô também não roda.', 'Tentar de novo')
+}
+
+// A tela sai só do campo resultado; qualquer outra coisa é o erro.
+function mostrarResposta(corpo) {
+  const objeto = typeof corpo === 'object' && corpo !== null
+  const resultado = objeto ? corpo.resultado : undefined
+  const hora = objeto && typeof corpo.paradoEmTexto === 'string' ? corpo.paradoEmTexto : null
+  if (resultado === 'parado' && hora !== null) {
+    mostrar('Robô PARADO', 'Parado em ' + hora + '. Nada mais será publicado nem gasto. Para religar, use o painel no seu PC.', null)
+  } else if (resultado === 'ja_parado' && hora !== null) {
+    mostrar('O robô já estava PARADO', 'Parado desde ' + hora + '. Para religar, use o painel no seu PC.', null)
+  } else if (resultado === 'link_usado') {
+    mostrar('Este link já foi usado', RELIGAR, null)
+  } else if (resultado === 'link_vencido') {
+    mostrar('Este link venceu', RELIGAR, null)
+  } else if (resultado === 'link_invalido' || resultado === 'pedido_invalido') {
+    mostrar('Link inválido', INVALIDO, null)
+  } else {
+    mostrarErro()
+  }
+}
+
+async function confirmar() {
+  let corpo = null
+  try {
+    const resposta = await fetch('https://ldzjwutxyvvfmzccjnwn.supabase.co/functions/v1/parar', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ t }), cache: 'no-store', referrerPolicy: 'no-referrer', signal: AbortSignal.timeout(20000) })
+    corpo = JSON.parse(await resposta.text())
+  } catch {
+    corpo = null
+  }
+  mostrarResposta(corpo)
+}
+
+if (t === '') {
+  mostrar('Link incompleto', 'Abra o link direto do e-mail do robô. Se continuar assim, use o painel no seu PC.', null)
+} else {
+  mostrar('Parar o robô?', 'O robô para de publicar e de gastar até você religar no painel do seu PC.', 'Confirmar PARAR')
+  botao.addEventListener('click', function () {
+    if (botao.disabled) return
+    botao.disabled = true
+    botao.textContent = 'Parando…'
+    confirmar()
+  })
+}
+</script>
+</body>
+</html>
