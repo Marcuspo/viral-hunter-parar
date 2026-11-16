@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Política de privacidade - Center Tech</title>
+<style>
+body { font-family: system-ui, sans-serif; max-width: 42rem; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #1a1a1a; }
+h1 { font-size: 1.6rem; }
+h2 { font-size: 1.2rem; margin-top: 2rem; }
+</style>
+</head>
+<body>
+<h1>Política de privacidade</h1>
+<p>Atualizada em 15/11/2026.</p>
+
+<section id="quem">
+<h2>Quem somos</h2>
+<p>Esta política vale para o painel de uso interno da loja <strong>Center Tech</strong>, que é o controlador dos dados descritos aqui. Para qualquer assunto sobre privacidade, escreva para <a href="mailto:marcusporama@gmail.com">marcusporama@gmail.com</a>.</p>
+</section>
+
+<section id="instagram">
+<h2>O que lemos do Instagram</h2>
+<p>O painel se conecta à conta profissional do Instagram da própria loja, pelo login do Instagram e pela API oficial da Meta, com a permissão que o dono da conta dá na hora de conectar.</p>
+<p>Guardamos apenas:</p>
+<ul>
+<li>o identificador da conta e a chave de acesso (o token), com a validade dela e as permissões dadas;</li>
+<li>dos posts da própria loja no Instagram, tanto os publicados pelo painel quanto os que a loja postou pelo app e registrou no painel com o link: o identificador do post, o link público do post e, enquanto um Reel é publicado pelo painel, o identificador do envio (contêiner);</li>
+<li>os números agregados desses posts: visualizações, curtidas, comentários, compartilhamentos e salvamentos.</li>
+</ul>
+<p>Para achar o identificador e o link de um post da loja, o painel lê a lista dos posts mais recentes da própria conta (identificador, link, data e legenda) e guarda só o que pertence ao post procurado.</p>
+<p>Usamos esses dados para uma única finalidade: medir o desempenho dos posts da própria loja e publicar os Reels que o dono da loja aprovou ou autorizou.</p>
+<p>Não guardamos o texto de nenhum comentário, nem dados de seguidores ou de outras pessoas. Só o número de comentários aparece, como contagem.</p>
+<p>A chave de acesso que a conexão devolve (o token) fica guardada criptografada no banco e nunca é mostrada na tela nem enviada ao navegador.</p>
+</section>
+
+<section id="onde">
+<h2>Onde os dados ficam</h2>
+<ul>
+<li>O banco de dados e os arquivos ficam no Supabase, em servidores em São Paulo.</li>
+<li>Os e-mails de aviso são enviados pelo Resend, que processa os metadados do envio nos Estados Unidos. Nenhum dado de cliente vai nesses e-mails.</li>
+<li>A inteligência artificial (Anthropic) recebe os fatos do produto, as fotos do produto com o direito de uso registrado e os textos de divulgação. Nunca recebe dados do Instagram.</li>
+<li>A cópia de segurança semanal do banco fica no GitHub, cifrada (veja o prazo em <a href="#prazo">por quanto tempo guardamos</a>).</li>
+</ul>
+<p>Esse uso de serviços no exterior é uma transferência internacional de dados, feita nos termos do art. 33 da Lei Geral de Proteção de Dados (LGPD, Lei 13.709/2018).</p>
+</section>
+
+<section id="anuncios">
+<h2>Anúncios da loja na Meta</h2>
+<p>O painel cria e acompanha, pela API de Marketing oficial da Meta, os anúncios da própria conta de anúncios da loja, que levam ao anúncio da loja no Mercado Livre. Nada é ativado sem a aprovação do dono da loja, anúncio por anúncio.</p>
+<p>Guardamos apenas os identificadores da campanha, do conjunto de anúncios, do anúncio e da regra de pausa, o orçamento, as datas, o estado e os números agregados que a Meta informa: valor gasto, impressões, alcance e cliques. Não guardamos dados de quem viu ou clicou no anúncio, e o painel não instala rastreamento de visitantes nem envia listas de clientes à Meta.</p>
+<p>Do Mercado Livre, o painel lê também as visitas por dia dos anúncios da loja (só a contagem) e as cobranças que o Mercado Livre faz à loja (tarifa de venda, frete e publicidade), sem nenhum dado de comprador.</p>
+</section>
+
+<section id="clientes">
+<h2>Dados de clientes</h2>
+<p>O sistema não guarda nome, e-mail, telefone nem endereço de clientes da loja.</p>
+<p>Para calcular o resultado de cada venda da loja, o painel lê, pela API oficial do Mercado Livre, os pedidos dos anúncios da loja e guarda deles só o número do pedido e do envio, o produto, a quantidade, os valores, as datas e as situações do pagamento, do envio e das reclamações. O painel não guarda nenhum dado pessoal do comprador: nome, apelido, e-mail, telefone, endereço, CPF e mensagens que venham na resposta do Mercado Livre são descartados na leitura e nunca gravados.</p>
+</section>
+
+<section id="prazo">
+<h2>Por quanto tempo guardamos</h2>
+<p>As métricas lidas do Instagram e os identificadores do Instagram guardados nos posts ficam enquanto a loja usa o painel. São apagados a pedido, como descrito em <a href="#exclusao">exclusão de dados</a>.</p>
+<p>O número de um pedido do Mercado Livre fica enquanto a venda não está encerrada (o Mercado Livre ainda pode mudar o pedido por reembolso, reclamação ou devolução, até 180 dias depois de o resultado da venda ser fechado) e pelo prazo fiscal indicado pelo contador da loja. A pedido do comprador, é apagado quando os dois prazos passam.</p>
+<p>Uma cópia de segurança cifrada do banco é feita toda semana e guardada por 30 dias. Depois de um pedido de exclusão, os dados apagados do banco ainda podem continuar nessas cópias, cifrados, por até 30 dias, e somem quando elas vencem.</p>
+</section>
+
+<section id="direitos">
+<h2>Seus direitos</h2>
+<p>Conforme o art. 18 da LGPD, você pode pedir a confirmação de que tratamos dados seus, o acesso a eles, a correção, a anonimização, o bloqueio ou a eliminação, a portabilidade, informações sobre o compartilhamento e a revogação do consentimento. Para pedir, escreva para <a href="mailto:marcusporama@gmail.com">marcusporama@gmail.com</a>.</p>
+</section>
+
+<section id="exclusao">
+<h2>Exclusão de dados</h2>
+<p>Para pedir a exclusão dos dados, escreva para <a href="mailto:marcusporama@gmail.com">marcusporama@gmail.com</a>. Respondemos em até 15 dias.</p>
+<p>Você também pode remover o app por conta própria, no Instagram: Configurações, depois &quot;Apps e sites&quot;, e remova o app. A conexão deixa de valer na hora.</p>
+<p>Com o pedido, apagamos a credencial do Instagram (o token e o identificador da conta), os identificadores de contêiner e de post do Instagram guardados nos posts e as métricas lidas da API do Instagram. Os textos e as datas dos posts da loja e os números que a própria loja digitou não são dados lidos do Instagram e não entram nesse pedido.</p>
+</section>
+</body>
+</html>
